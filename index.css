@@ -1,0 +1,81 @@
+/* General Body Styling */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container Styling */
+.login-container {
+    background: #ffffff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Logo Styling */
+.login-container img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+/* Heading Styling */
+.login-container h1 {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+/* Label Styling */
+.login-container label {
+    font-size: 16px;
+    color: #333333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Input Field Styling */
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+/* Button Styling */
+.login-container button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.login-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Link Styling */
+.login-container a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}

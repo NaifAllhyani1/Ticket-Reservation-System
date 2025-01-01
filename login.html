@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Branding: Logo -->
+        <img src="logo.jpg" height="150" width="150" alt="Website Logo">
+        
+        <h1>Login</h1>
+        <form action="/submit-login" method="POST">
+            <!-- Username Field -->
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            
+            <!-- Password Field -->
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            
+            <!-- Login Button -->
+            <button type="submit">Login</button>
+        </form>
+        
+        <!-- Forgot Password Link -->
+        <a href="/forgot-password">Forgot Password?</a>
+        
+        <hr style="margin: 20px 0;">
+        
+        <!-- Sign Up Redirect -->
+       <a href="signup.html"><button>SignUp</button></a> 
+    </div>
+</body>
+</html>
