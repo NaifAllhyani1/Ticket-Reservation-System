@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Online Payment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Secure Payment</h1>
+    
+    <form id="payment-form">
+      <!-- Payment Summary -->
+      <div class="summary">
+        <h2>Order Summary</h2>
+        <p><strong>Total Amount: </strong><span id="total-amount">$150.00</span></p>
+        <p><strong>Items: </strong><span id="item-summary">3 Items</span></p>
+      </div>
+
+      <!-- Payment Method -->
+      <label for="payment-method">Select Payment Method:</label>
+      <select id="payment-method" required>
+        <option value="credit-card">Credit/Debit Card</option>
+        <option value="digital-wallet">Digital Wallet</option>
+        <option value="bank-transfer">Bank Transfer</option>
+      </select>
+
+      <!-- Credit Card Details -->
+      <div id="card-details" class="payment-details">
+        <label for="card-number">Card Number:</label>
+        <input type="text" id="card-number" placeholder="1234 5678 9876 5432" required>
+ <br>
+        <label for="expiry-date">Expiry Date:</label>
+        <input type="month" id="expiry-date" required>
+
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" placeholder="123" required>
+
+        <div class="payment-icons">
+          <img src="ssl-icon.png" alt="SSL Secure" id="ssl-icon">
+          <span>Secure Payment</span>
+        </div>
+      </div>
+
+      <!-- Digital Wallet or Bank Transfer Details -->
+      <div id="wallet-details" class="payment-details" style="display: none;">
+        <label for="wallet-id">Wallet ID:</label>
+        <input type="text" id="wallet-id" placeholder="Your Wallet ID">
+      </div>
+
+      <!-- Confirmation -->
+      <div class="confirmation">
+        <button type="submit" id="pay-button">Confirm Payment</button>
+        <button type="button" id="cancel-button" onclick="cancelPayment()">Cancel</button>
+      </div>
+    </form>
+
+    <div id="error-message" class="error-message"></div>
+    <div id="confirmation-message" class="confirmation-message"></div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
