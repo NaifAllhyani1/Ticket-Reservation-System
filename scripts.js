@@ -137,5 +137,6 @@ document.getElementById('train-search-form').addEventListener('submit', function
       cardDetails.style.display = 'none';
       walletDetails.style.display = 'none';
     }
+    
   });
   
