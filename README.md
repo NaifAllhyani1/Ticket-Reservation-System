@@ -26,7 +26,7 @@ The Ticket Reservation System is a project aimed at providing a streamlined proc
    - Launch Visual Studio and open the downloaded folder containing the project files.
 
 3. **Start the Live Server:**
-   - Right-click on the `homepage.html` file in the project folder.
+   - Right-click on the `index.html` file in the project folder.
    - Select **Open with Live Server** to start a local server and view the application in your web browser.
 
 4. **Explore the Application:**
