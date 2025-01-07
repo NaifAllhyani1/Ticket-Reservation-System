@@ -4,12 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Secure Online Payment</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
-  <div class="container">
+  <header>
+    <div class="logo-container">
+      <img src="logo.jpg" alt="Website Logo">
+    </div>
     <h1>Secure Payment</h1>
-    
+  </header>
+
+  <div class="container">
     <form id="payment-form">
       <!-- Payment Summary -->
       <div class="summary">
@@ -30,17 +35,14 @@
       <div id="card-details" class="payment-details">
         <label for="card-number">Card Number:</label>
         <input type="text" id="card-number" placeholder="1234 5678 9876 5432" required>
- <br>
+        
         <label for="expiry-date">Expiry Date:</label>
         <input type="month" id="expiry-date" required>
 
         <label for="cvv">CVV:</label>
         <input type="text" id="cvv" placeholder="123" required>
 
-        <div class="payment-icons">
-          <img src="ssl-icon.png" alt="SSL Secure" id="ssl-icon">
-          <span>Secure Payment</span>
-        </div>
+       
       </div>
 
       <!-- Digital Wallet or Bank Transfer Details -->
@@ -60,7 +62,10 @@
     <div id="confirmation-message" class="confirmation-message"></div>
   </div>
 
+  <footer>
+    <p>&copy; 2025 Ticket Reservation System</p>
+  </footer>
+
   <script src="scripts.js"></script>
-  
 </body>
 </html>

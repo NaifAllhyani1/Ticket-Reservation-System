@@ -4,9 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Train Search</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
+  <div class="logo-container">
+    <!-- Branding: Logo -->
+    <img src="logo.jpg" alt="Website Logo">
+</div>
   <div class="container">
     <h1>Search for Trains</h1>
     
@@ -18,7 +22,7 @@
       <input type="text" id="destination-location" name="destination-location" placeholder="Enter destination location" required>
       
       <label for="travel-date">Travel Date:</label>
-      <input type="date" id="travel-date" name="travel-date" required>
+      <input type="text" id="travel-date" name="travel-date" required>
       
       <button type="submit" id="search-button">Search</button>
     </form>
@@ -27,7 +31,59 @@
     <div id="error-message" class="error-message"></div>
   </div>
 
-  <script src="scripts.js"></script>
-  
+  <script type="module">
+    import { trainBookingData } from './data.js';
+
+    document.getElementById('train-search-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const departureLocation = document.getElementById('departure-location').value.trim();
+      const destinationLocation = document.getElementById('destination-location').value.trim();
+      const travelDate = document.getElementById('travel-date').value;
+
+      const resultsDiv = document.getElementById('results');
+      const errorDiv = document.getElementById('error-message');
+
+      // Filter trains based on user input
+      const availableTrains = trainBookingData.availableTrains.filter(train =>
+        train.from_station.toLowerCase() === departureLocation.toLowerCase() &&
+        train.to_station.toLowerCase() === destinationLocation.toLowerCase() &&
+        train.travel_date === travelDate
+      );
+
+      resultsDiv.innerHTML = '';
+
+      if (availableTrains.length === 0) {
+        errorDiv.textContent = 'No trains found for the selected criteria.';
+        errorDiv.style.display = 'block';
+      } else {
+        errorDiv.style.display = 'none';
+        availableTrains.forEach(train => {
+          const trainDiv = document.createElement('div');
+          trainDiv.classList.add('train-result');
+          trainDiv.innerHTML = `
+            <div style="border: 1px solid #ccc; border-radius: 8px; padding: 16px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #f9f9f9;">
+              <h3>Train ID: ${train.train_id}</h3>
+              <p><strong>Departure Time:</strong> ${train.departure_time}</p>
+              <p><strong>Arrival Time:</strong> ${train.arrival_time}</p>
+              <p><strong>Duration:</strong> ${train.duration}</p>
+              <p><strong>Price:</strong> <span style="color: #28a745; font-weight: bold;">${train.price}</span></p>
+              <button class="btn select-train" data-train-id="${train.train_id}">Select Train</button>
+            </div>
+          `;
+          resultsDiv.appendChild(trainDiv);
+        });
+      }
+    });
+
+    // Event delegation for dynamic train selection buttons
+    document.getElementById('results').addEventListener('click', function(event) {
+      if (event.target.classList.contains('select-train')) {
+        const trainId = event.target.getAttribute('data-train-id');
+        alert(`You selected Train ID: ${trainId}`); // Optional confirmation
+        window.location.href = 'seat-selection.html';
+      }
+    });
+  </script>
 </body>
 </html>

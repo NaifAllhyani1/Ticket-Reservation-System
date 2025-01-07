@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up Form</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
-    <div class="login-container">
-        <!-- Branding: Logo -->
-        <img src="logo.jpg" height="150" width="150" alt="Website Logo">
-        
+    <!-- Logo Section -->
+    <div class="logo-container">
+        <img src="logo.jpg" alt="Website Logo">
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
         <h1>Sign Up</h1>
-        <form action="/submit-signup" method="POST">
+        <form id="signupForm">
             <!-- Full Name Field -->
             <label for="fullname">Full Name</label>
             <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
@@ -38,7 +41,20 @@
         </form>
         
         <!-- Redirect to Login -->
-        <a href="login.html"><button>Login</button></a> 
+        <div class="confirmation">
+            <a href="login.html"><button>Login</button></a>
+        </div>
     </div>
+
+    <!-- JavaScript for Redirection -->
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+            // Add validation or API call logic here if needed
+
+            // Redirect to login.html after "sign up"
+            window.location.href = "login.html";
+        });
+    </script>
 </body>
 </html>

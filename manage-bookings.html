@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Bookings</title>
+  <link rel="stylesheet" href="Styles.css">
+  <style>
+    .dashboard {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .booking {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .booking-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .booking-header h3 {
+      margin: 0;
+    }
+
+    .booking-details {
+      margin: 10px 0;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+
+    .confirmation-message {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #e9f7e9;
+      border: 1px solid #4CAF50;
+      color: #4CAF50;
+      border-radius: 4px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="logo.jpg" alt="Website Logo">
+    </div>
+    <h1>Manage Your Bookings</h1>
+  </header>
+
+  <div class="dashboard">
+    <h2>Your Bookings</h2>
+    <div id="bookings-container">
+      <!-- Booking items will be dynamically populated here -->
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Ticket Reservation System</p>
+  </footer>
+
+  <script>
+    const bookings = [
+      {
+        train_id: "TR001",
+        from_station: "MKK",
+        to_station: "JED",
+        travel_date: "01/07/2025",
+        departure_time: "08:00 AM",
+        arrival_time: "10:30 AM",
+        duration: "2h 30m",
+        price: "$30",
+        seat_number: "A1",
+        status: "Active",
+      },
+      {
+        train_id: "TR002",
+        from_station: "MKK",
+        to_station: "JED",
+        travel_date: "01/07/2025",
+        departure_time: "02:00 PM",
+        arrival_time: "04:30 PM",
+        duration: "2h 30m",
+        price: "$35",
+        seat_number: "B2",
+        status: "Active",
+      },
+      {
+        train_id: "TR003",
+        from_station: "JED",
+        to_station: "RYD",
+        travel_date: "01/07/2025",
+        departure_time: "09:00 AM",
+        arrival_time: "01:00 PM",
+        duration: "4h 00m",
+        price: "$50",
+        seat_number: "C3",
+        status: "Completed",
+      },
+      {
+        train_id: "TR004",
+        from_station: "RYD",
+        to_station: "DAM",
+        travel_date: "01/07/2025",
+        departure_time: "11:00 AM",
+        arrival_time: "03:30 PM",
+        duration: "4h 30m",
+        price: "$55",
+        seat_number: "D4",
+        status: "Active",
+      }
+    ];
+
+    const bookingsContainer = document.getElementById("bookings-container");
+
+    // Render bookings
+    bookings.forEach((booking) => {
+      const bookingDiv = document.createElement("div");
+      bookingDiv.classList.add("booking");
+
+      bookingDiv.innerHTML = `
+        <div class="booking-header">
+          <h3>Train ID: ${booking.train_id}</h3>
+          <span>Status: ${booking.status}</span>
+        </div>
+        <div class="booking-details">
+          <p><strong>From:</strong> ${booking.from_station}</p>
+          <p><strong>To:</strong> ${booking.to_station}</p>
+          <p><strong>Travel Date:</strong> ${booking.travel_date}</p>
+          <p><strong>Departure:</strong> ${booking.departure_time}</p>
+          <p><strong>Arrival:</strong> ${booking.arrival_time}</p>
+          <p><strong>Duration:</strong> ${booking.duration}</p>
+          <p><strong>Price:</strong> ${booking.price}</p>
+          <p><strong>Seat Number:</strong> ${booking.seat_number}</p>
+        </div>
+        <div class="actions">
+          <button class="btn cancel" ${booking.status !== "Active" ? "disabled" : ""}>Cancel Booking</button>
+          <button class="btn modify" ${booking.status !== "Active" ? "disabled" : ""}>Modify Booking</button>
+        </div>
+      `;
+
+      // Add event listeners for buttons
+      const cancelBtn = bookingDiv.querySelector(".cancel");
+      const modifyBtn = bookingDiv.querySelector(".modify");
+
+      cancelBtn.addEventListener("click", () => handleCancellation(booking));
+      modifyBtn.addEventListener("click", () => handleModification(booking));
+
+      bookingsContainer.appendChild(bookingDiv);
+    });
+
+    function handleCancellation(booking) {
+      if (confirm(`Are you sure you want to cancel booking for Train ID: ${booking.train_id}?`)) {
+        alert("Your booking has been successfully canceled. A refund of " + booking.price + " will be processed.");
+        booking.status = "Canceled";
+        location.reload();
+      }
+    }
+
+    function handleModification(booking) {
+      const newDate = prompt("Enter a new date for your booking (YYYY-MM-DD):", booking.travel_date);
+      if (newDate) {
+        alert(`Your booking has been updated to ${newDate}.`);
+        booking.travel_date = newDate;
+        location.reload();
+      }
+    }
+  </script>
+
+</body>
+</html>
