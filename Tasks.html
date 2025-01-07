@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Train Seat Selection Interface</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 24px;
+    }
+
+    #instructions {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .seat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr) 1px repeat(2, 1fr); /* Two seats on each side with a separator */
+      gap: 10px;
+      width: 320px;
+      margin: 20px auto;
+      justify-items: center;
+    }
+
+    .seat-row {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+    }
+
+    .seat {
+      width: 60px;
+      height: 60px;
+      background-color: lightgray;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .seat.selected {
+      background-color: green;
+      color: white;
+    }
+
+    .aisle {
+      width: 1px;
+      background-color: #333;
+      height: 60px;
+    }
+
+    #confirm-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #confirm-btn:hover {
+      background-color: darkblue;
+    }
+  </style>
+</head>
+<body>
+  <h1>Train Seat Selection</h1>
+  <p id="instructions">Click on a seat to select/deselect.</p>
+
+  <div class="seat-grid" id="seatGrid">
+    <!-- Seats will be dynamically added here -->
+  </div>
+
+  <button id="confirm-btn">Confirm Selection</button>
+
+  <script>
+    // Constants
+    const ROWS = 5; // Number of rows of seats
+    const seatGrid = document.getElementById("seatGrid");
+
+    // Create seat rows dynamically
+    for (let row = 1; row <= ROWS; row++) {
+      const seatRow = document.createElement("div");
+      seatRow.classList.add("seat-row");
+
+      // Left side seats
+      const leftSeat = document.createElement("div");
+      leftSeat.classList.add("seat");
+      leftSeat.textContent = `L${row}`;
+      leftSeat.addEventListener("click", () => {
+        leftSeat.classList.toggle("selected");
+      });
+
+      // Aisle (in between left and right seats)
+      const aisle = document.createElement("div");
+      aisle.classList.add("aisle");
+
+      // Right side seats
+      const rightSeat = document.createElement("div");
+      rightSeat.classList.add("seat");
+      rightSeat.textContent = `R${row}`;
+      rightSeat.addEventListener("click", () => {
+        rightSeat.classList.toggle("selected");
+      });
+
+      // Append seats and aisle to the row
+      seatRow.appendChild(leftSeat);
+      seatRow.appendChild(aisle);
+      seatRow.appendChild(rightSeat);
+
+      // Append the row to the seat grid
+      seatGrid.appendChild(seatRow);
+    }
+
+    // Confirm Selection
+    const confirmButton = document.getElementById("confirm-btn");
+    confirmButton.addEventListener("click", () => {
+      const selectedSeats = Array.from(document.querySelectorAll(".seat.selected"))
+        .map(seat => seat.textContent);
+
+      if (selectedSeats.length > 0) {
+        alert(`Selected seats: ${selectedSeats.join(", ")}`);
+      } else {
+        alert("No seats selected!");
+      }
+    });
+  </script>
+</body>
+</html>
