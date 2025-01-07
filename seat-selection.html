@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seat Selection</title>
+  <link rel="stylesheet" href="Styles.css">
+  <style>
+    .seat-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      max-width: 400px;
+      margin: 20px auto;
+    }
+
+    .seat {
+      width: 60px;
+      height: 60px;
+      border-radius: 4px;
+      background-color: #4CAF50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.3s ease;
+    }
+
+    .seat.selected {
+      background-color: #FF9800;
+    }
+
+    .seat.unavailable {
+      background-color: #f44336;
+      cursor: not-allowed;
+    }
+
+    .seat:hover:not(.unavailable) {
+      background-color: #45a049;
+    }
+
+    .seat[data-tooltip]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: #fff;
+      padding: 5px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      z-index: 10;
+    }
+
+    .summary {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .instructions {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    @media (max-width: 600px) {
+      .seat {
+        width: 40px;
+        height: 40px;
+      }
+
+      .seat-grid {
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="logo.jpg" alt="Website Logo">
+    </div>
+    <h1>Seat Selection</h1>
+  </header>
+
+  <div class="container">
+    <div class="instructions">
+      <p>Select your preferred seat by clicking on it. Hover over a seat to see details like seat number and price. Use the dropdown filter to narrow down seat types.</p>
+    </div>
+
+    <label for="seat-filter">Filter by seat type:</label>
+    <select id="seat-filter">
+      <option value="all">All</option>
+      <option value="aisle">Aisle</option>
+      <option value="window">Window</option>
+    </select>
+
+    <div id="seat-grid" class="seat-grid">
+      <!-- Seats will be dynamically added here -->
+    </div>
+
+    <div class="summary">
+      <h3>Selected Seats</h3>
+      <p id="selected-seats">None</p>
+      <h3>Total Cost</h3>
+      <p id="total-cost">$0.00</p>
+    </div>
+
+    <div class="confirmation">
+      <button id="confirm-selection" class="btn">Confirm Selection</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Ticket Reservation System</p>
+  </footer>
+
+  <script>
+    // Seat data
+    const rows = 5;
+    const columns = 5;
+    const seatPrice = 20;
+
+    // DOM elements
+    const seatGrid = document.getElementById('seat-grid');
+    const selectedSeatsDisplay = document.getElementById('selected-seats');
+    const totalCostDisplay = document.getElementById('total-cost');
+    const confirmButton = document.getElementById('confirm-selection');
+    const seatFilter = document.getElementById('seat-filter');
+
+    let selectedSeats = [];
+
+    // Create seat grid
+    for (let row = 1; row <= rows; row++) {
+      for (let col = 1; col <= columns; col++) {
+        const seat = document.createElement('div');
+        seat.classList.add('seat');
+        seat.textContent = `${row}-${col}`;
+        seat.dataset.tooltip = `Seat ${row}-${col}, $${seatPrice}`;
+
+        // Simulate seat types and unavailable seats
+        if (Math.random() < 0.2) {
+          seat.classList.add('unavailable');
+          seat.dataset.tooltip = `Seat ${row}-${col} (Unavailable)`;
+        } else {
+          seat.dataset.type = Math.random() > 0.5 ? 'aisle' : 'window';
+        }
+
+        // Handle seat click
+        seat.addEventListener('click', () => {
+          if (seat.classList.contains('unavailable')) return;
+
+          seat.classList.toggle('selected');
+          const seatId = `${row}-${col}`;
+
+          if (seat.classList.contains('selected')) {
+            selectedSeats.push(seatId);
+          } else {
+            selectedSeats = selectedSeats.filter(s => s !== seatId);
+          }
+
+          updateSummary();
+        });
+
+        seatGrid.appendChild(seat);
+      }
+    }
+
+    // Update summary
+    function updateSummary() {
+      selectedSeatsDisplay.textContent = selectedSeats.length ? selectedSeats.join(', ') : 'None';
+      totalCostDisplay.textContent = `$${(selectedSeats.length * seatPrice).toFixed(2)}`;
+    }
+
+    // Filter seats by type
+    seatFilter.addEventListener('change', () => {
+      const filter = seatFilter.value;
+      document.querySelectorAll('.seat').forEach(seat => {
+        if (filter === 'all' || seat.dataset.type === filter) {
+          seat.style.display = 'flex';
+        } else {
+          seat.style.display = 'none';
+        }
+      });
+    });
+
+    // Confirm selection
+    confirmButton.addEventListener('click', () => {
+      if (selectedSeats.length === 0) {
+        alert('Please select at least one seat.');
+        return;
+      }
+
+      alert(`You have selected seats: ${selectedSeats.join(', ')}. Total cost: $${(selectedSeats.length * seatPrice).toFixed(2)}`);
+      // Redirect to homepage after confirmation
+      window.location.href = 'homepage.html';
+    });
+  </script>
+</body>
+</html>
