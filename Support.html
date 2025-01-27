@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support - Ticket Reservation System</title>
+    <link rel="stylesheet" href="index.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -49,7 +50,33 @@
     </style>
 </head>
 <body>
+    <div class="logo-container">
+        <img src="logo.png" alt="Website Logo">
+      </div>
     <header>
+        <!-- User Info Section -->
+    <div class="action">
+   <div class="user-info" onclick="menuToggle();">
+      <img src="user3.png" alt="User Icon">
+   </div>
+   <div class="menu" > 
+      <span style=" color: black;"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+      <ul>
+        
+      <li><a href="manage-bookings.php">Manage Bookings</a></li>
+      
+      <li>
+      <a href="?logout=true" class="btn">Logout</a>
+        </li>
+      </ul>
+   </div>
+    </div>
+    <script>
+      function menuToggle() {
+        const toggleMenu = document.querySelector(".menu");
+        toggleMenu.classList.toggle("active");
+      }
+    </script>
         <h1>Support - Ticket Reservation System</h1>
     </header>
     <main>
