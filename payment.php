@@ -43,5 +43,6 @@ $selected_seats = htmlspecialchars($_GET['selected_seats']);
       <button type="submit" class="btn">Confirm Payment</button>
     </form>
   </div>
-</body>
+</body> 
+
 </html>
