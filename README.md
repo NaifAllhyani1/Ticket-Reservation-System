@@ -49,6 +49,7 @@ Feel free to contribute to the project by submitting issues or pull requests on 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
+
 ## Contact
 For any questions or support, please open an issue on the [GitHub repository](https://github.com/NaifAllhyani1/Ticket-Reservation-System/issues).
 
