@@ -43,6 +43,9 @@ The Ticket Reservation System is a project designed to provide a streamlined pro
    - Open your browser and go to `http://localhost/Ticket-Reservation-System`.
    - Explore the application and experience the Ticket Reservation System.
 
+6. **Video Showcase**
+   - https://www.youtube.com/watch?v=gNOHIg6m_KU
+
 ## Contributions
 Feel free to contribute to the project by submitting issues or pull requests on the GitHub repository. Any feedback or suggestions for improvements are highly appreciated.
 
