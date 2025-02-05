@@ -69,5 +69,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <footer>
     <p>&copy; 2025 Ticket Reservation System</p>
   </footer>
-</body>
+</body> 
 </html>
