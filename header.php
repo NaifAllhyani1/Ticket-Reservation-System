@@ -60,4 +60,5 @@ if (isset($_GET['logout'])) {
       <img src="logo.png" alt="Website Logo">
    </div>
 
+    
 </header>

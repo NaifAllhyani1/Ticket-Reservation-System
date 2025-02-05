@@ -39,4 +39,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "<p style='color: red; text-align: center;'>Invalid request. Please start again.</p>";
     echo "<p style='text-align: center;'><a href='train-search.php' class='btn'>Go to Train Search</a></p>";
 }
+
 ?>

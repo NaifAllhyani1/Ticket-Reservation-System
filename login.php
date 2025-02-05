@@ -81,7 +81,7 @@ if (isset($_POST['login'])) {
         </form>
 
         <div class="confirmation">
-            <a href="/forgot-password"><button style=" margin-top: 10px;
+            <a href="forgot-password.php"><button style=" margin-top: 10px;
   padding: 10px 20px; width: 1200px;" > Forgot Password? </button></a>
         </div>
 

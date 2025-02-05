@@ -102,5 +102,6 @@ if (isset($_GET['logout'])) {
   <footer>
     <p>&copy; 2025 Ticket Reservation System</p>
   </footer>
+   
 </body>
 </html>

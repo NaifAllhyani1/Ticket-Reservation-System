@@ -28,5 +28,6 @@ for ($row = 1; $row <= $rows; $row++) {
     }
 }
 
+
 echo "Seats successfully added for train ID $train_id.";
 ?>
